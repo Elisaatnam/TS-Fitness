@@ -1,4 +1,4 @@
-import { SelectedPage } from '@/shared/types'
+import { ClassType, SelectedPage } from '@/shared/types'
 
 import { motion } from 'framer-motion'
 import Heading from '@/shared/Heading'
@@ -6,11 +6,11 @@ import Heading from '@/shared/Heading'
 import {
     Carousel,
     CarouselContent,
-    CarouselItem,
     CarouselNext,
     CarouselPrevious,
 } from '@/components/ui/carousel'
 import { classes } from './classesArr'
+import Class from './Class'
 
 type Props = {
     setSelectedPage: (value: SelectedPage) => void
@@ -48,10 +48,13 @@ const OurClasses = ({ setSelectedPage }: Props) => {
                 <div className="flex justify-center items-center">
                     <Carousel className="w-full max-w-xs md:max-w-4xl">
                         <CarouselContent>
-                            {classes.map((singleClass) => (
-                                <CarouselItem key={singleClass.name}>
-                                    <img src={singleClass.image} alt="" />
-                                </CarouselItem>
+                            {classes.map((singleClass: ClassType) => (
+                                <Class
+                                    key={singleClass.name}
+                                    name={singleClass.name}
+                                    description={singleClass.description}
+                                    image={singleClass.image}
+                                />
                             ))}
                         </CarouselContent>
                         <CarouselPrevious />
